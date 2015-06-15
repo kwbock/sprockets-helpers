@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'pry'
+require 'pry-debugger'
 
 describe Sprockets::Helpers do
   describe '.configure' do
@@ -474,7 +476,7 @@ describe Sprockets::Helpers do
             tags = context.asset_tag('main.js') do |path|
               "<script src=\"#{path}\"></script>"
             end
-            expect(tags.split('</script>')).to have(3).scripts
+            expect(tags.split('</script>').length).to eq(3)
             expect(tags).to include('<script src="/assets/main.js?body=1"></script>')
             expect(tags).to include('<script src="/assets/a.js?body=1"></script>')
             expect(tags).to include('<script src="/assets/b.js?body=1"></script>')
@@ -574,7 +576,7 @@ describe Sprockets::Helpers do
 
       expect(Sprockets::Helpers.environment).to be(custom_env)
       expect(Sprockets::Helpers.prefix).to eq('/static')
-      expect(Sprockets::Helpers.digest).to be_true
+      expect(Sprockets::Helpers.digest).to be(true)
     end
 
     it 'uses first prefix if assets_prefix is an array' do
@@ -607,7 +609,7 @@ describe Sprockets::Helpers do
 
       expect(Sprockets::Helpers.environment).to be(custom_env)
       expect(Sprockets::Helpers.prefix).to eq('/static')
-      expect(Sprockets::Helpers.expand).to be_true
+      expect(Sprockets::Helpers.expand).to be(true)
     end
   end
 end

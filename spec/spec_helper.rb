@@ -4,6 +4,7 @@ require 'sinatra/base'
 require 'sinatra/sprockets/helpers'
 require 'construct'
 require 'pathname'
+require 'rspec/collection_matchers'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
